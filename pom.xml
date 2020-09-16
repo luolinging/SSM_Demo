@@ -23,7 +23,7 @@
     <log4j.version>1.2.12</log4j.version>
     <mysql.version>5.1.6</mysql.version>
     <mybatis.version>3.4.5</mybatis.version>
-    <jackson.version>2.5.4</jackson.version>
+    <jackson.version>2.9.0</jackson.version>
   </properties>
 
   <dependencies>
@@ -147,7 +147,6 @@
       <artifactId>lombok</artifactId>
       <version>1.16.12</version>
     </dependency>
-
     <!-- 谷歌java类库的依赖，如快速创建一个ArrayList，使用Lists.newArrayList() -->
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -155,7 +154,27 @@
       <version>18.0</version>
     </dependency>
     <!--将对象转化为json格式的转化器-->
-
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>fastjson</artifactId>
+          <version>1.2.72</version>
+          <scope>compile</scope>
+      </dependency>
   </dependencies>
 
   <build>

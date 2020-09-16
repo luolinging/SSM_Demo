@@ -35,4 +35,24 @@
     <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.lll.student.dao"></property>
     </bean>
+
+    <!--配置spring框架的声明式事务管理：insert、update、delete操作会涉及到事务-->
+    <!--1、配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--2、配置事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="find*" read-only="true"/>    <!--find..开头的方法设置成 只读事务-->
+            <tx:method name="*" isolation="DEFAULT"/>     <!--除了find开头的其他方法的 设置-->
+        </tx:attributes>
+    </tx:advice>
+    <!--3、配置aop增强-->
+    <aop:config>
+        <!-- 配置切入点表达式-->
+        <aop:pointcut id="ptAdvisor" expression="execution(* com.lll.student.service.impl.*.*(..))"></aop:pointcut>
+        <!--建立切入点表达式和事务通知的对应关系 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="ptAdvisor"></aop:advisor>
+    </aop:config>
 </beans>

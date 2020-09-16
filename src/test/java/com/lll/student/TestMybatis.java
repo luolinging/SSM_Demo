@@ -46,7 +46,7 @@ public class TestMybatis {
         student.setName("花蝴蝶");
         student.setAge(21);
         student.setPhone("23232242422");
-        student.setGradeId(12233L);
+        student.setGrade_id(12233L);
 
         try {
             // 加载配置文件

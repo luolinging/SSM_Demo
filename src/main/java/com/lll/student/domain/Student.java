@@ -18,5 +18,5 @@ public class Student implements Serializable{
 
     private String phone;
 
-    private Long gradeId;
+    private Long grade_id;
 }

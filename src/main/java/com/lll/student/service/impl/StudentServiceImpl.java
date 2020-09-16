@@ -1,5 +1,6 @@
 package com.lll.student.service.impl;
 
+import com.lll.student.common.MyException;
 import com.lll.student.dao.IStudentDao;
 import com.lll.student.domain.Student;
 import com.lll.student.service.IStudentService;
@@ -20,6 +21,9 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public void insert(Student student) {
+        if (student.getGrade_id() > 100){
+            throw new MyException("自定义异常");
+        }
         studentDao.insert(student);
     }
 
@@ -35,12 +39,12 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public List<Student> findAll() {
-        System.out.println("service层的findAll.....");
         return studentDao.findAll();
     }
 
     @Override
     public Student findById(Long id) {
+        int i = 1/0;
         return studentDao.findById(id);
     }
 
