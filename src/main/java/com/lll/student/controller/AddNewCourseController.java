@@ -1,6 +1,8 @@
 package com.lll.student.controller;
 
 import com.google.common.collect.Lists;
+import com.lll.student.common.Result;
+import com.lll.student.controller.dto.CourseAndTeacher;
 import com.lll.student.domain.Student;
 import com.lll.student.domain.pojo.Course;
 import com.lll.student.domain.pojo.SelectCourseRecord;
@@ -12,8 +14,7 @@ import com.lll.student.service.TeachCourseRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -67,14 +68,14 @@ public class AddNewCourseController {
     }
 
     @RequestMapping(value = "forceStudentSelectCourse1", method = RequestMethod.POST)
-    public void forceStudentSelectCourse1(Long courseId, List<Long> teacherIdList){
+    public @ResponseBody Result forceStudentSelectCourse1(@RequestBody CourseAndTeacher courseAndTeacher){
         List<TeachCourseRecord> teachCourseRecordList = Lists.newArrayList();
-        for (Long teacherId : teacherIdList) {
-            List<TeachCourseRecord> teachCourseRecords = teachCourseRecordService.selectByCourseAndTeacher(teacherId, courseId);
+        for (Long teacherId : courseAndTeacher.getTeacherIdList()) {
+            List<TeachCourseRecord> teachCourseRecords = teachCourseRecordService.selectByCourseAndTeacher(teacherId, courseAndTeacher.getCourseId());
             if(CollectionUtils.isEmpty(teachCourseRecords)){
                 TeachCourseRecord teachCourseRecord = new TeachCourseRecord();
                 teachCourseRecord.setTeachId(teacherId);
-                teachCourseRecord.setCourseId(courseId);
+                teachCourseRecord.setCourseId(courseAndTeacher.getCourseId());
                 this.insertTeachCourseRecord(teachCourseRecord);
                 teachCourseRecordList.add(teachCourseRecord);
             }else {
@@ -92,5 +93,7 @@ public class AddNewCourseController {
             selectCourseRecord.setTeachCourseRecordId(teachCourseRecord.getId());
             selectCourseRecordService.insert(selectCourseRecord);
         }
+        return Result.wrapSuccessResult();
     }
+
 }
