@@ -33,6 +33,6 @@ public interface TeachCourseRecordDao {
     @Select("select * from teach_course_record where course_id = #{courseId}")
     List<TeachCourseRecord> selectByCourseId(Long courseId);
 
-    @Select("select * from teach_course_record where teacher_id = #{teacherId} and course_id = #{courseId}")
+    @Select("select * from teach_course_record where teach_id = #{teacherId} and course_id = #{courseId}")
     List<TeachCourseRecord> selectByCourseAndTeacher(@Param("teacherId") Long teacherId, @Param("courseId") Long courseId);
 }
