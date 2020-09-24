@@ -14,4 +14,7 @@ public interface StudentDao {
 
     @Select("select * from student")
     List<Student> selectAll();
+
+    @Select("select name from student where id = #{studentId}")
+    String selectNameById(Long studentId);
 }

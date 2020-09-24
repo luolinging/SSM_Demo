@@ -8,6 +8,15 @@ import org.apache.ibatis.annotations.Select;
  * @author luo
  */
 public interface CourseDao {
+
+    /**
+     * 根据课程id查询课程名
+     * @param courseId
+     * @return
+     */
+    @Select("select name from course where id = #{courseId}")
+    String selectNameById(Long courseId);
+
     /**
      * 查找课程
      * @param courseId  课程id
