@@ -2,7 +2,7 @@ package com.lll.student.controller;
 
 import com.google.common.collect.Lists;
 import com.lll.student.common.Result;
-import com.lll.student.controller.dto.CourseAndTeacher;
+import com.lll.student.controller.dto.CourseAndTeacherDTO;
 import com.lll.student.domain.Student;
 import com.lll.student.domain.pojo.Course;
 import com.lll.student.domain.pojo.SelectCourseRecord;
@@ -68,14 +68,17 @@ public class AddNewCourseController {
     }
 
     @RequestMapping(value = "forceStudentSelectCourse1", method = RequestMethod.POST)
-    public @ResponseBody Result forceStudentSelectCourse1(@RequestBody CourseAndTeacher courseAndTeacher){
+    public @ResponseBody Result forceStudentSelectCourse1(@RequestBody CourseAndTeacherDTO courseAndTeacherDTO){
         List<TeachCourseRecord> teachCourseRecordList = Lists.newArrayList();
-        for (Long teacherId : courseAndTeacher.getTeacherIdList()) {
-            List<TeachCourseRecord> teachCourseRecords = teachCourseRecordService.selectByCourseAndTeacher(teacherId, courseAndTeacher.getCourseId());
+        List<Long> teacherIdList = courseAndTeacherDTO.getTeacherIdList();
+        Long courseId = courseAndTeacherDTO.getCourseId();
+        for (Long teacherId : teacherIdList) {
+            System.out.println(teacherId);
+            List<TeachCourseRecord> teachCourseRecords = teachCourseRecordService.selectByCourseAndTeacher(teacherId, courseId);
             if(CollectionUtils.isEmpty(teachCourseRecords)){
                 TeachCourseRecord teachCourseRecord = new TeachCourseRecord();
                 teachCourseRecord.setTeachId(teacherId);
-                teachCourseRecord.setCourseId(courseAndTeacher.getCourseId());
+                teachCourseRecord.setCourseId(courseId);
                 this.insertTeachCourseRecord(teachCourseRecord);
                 teachCourseRecordList.add(teachCourseRecord);
             }else {

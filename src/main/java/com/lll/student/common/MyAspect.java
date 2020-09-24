@@ -43,7 +43,7 @@ public class MyAspect {
             log.error("非业务异常:{}", e);
             return Result.wrapErrorResult("-1","系统内部错误");
         } catch (Throwable throwable) {
-            log.error("非业务异常:{}", throwable.toString());
+            log.error("非业务异常:{}", throwable);
             return Result.wrapErrorResult("-1","系统内部错误");
         }
         return returnValue;
