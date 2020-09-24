@@ -89,8 +89,8 @@ public class AddNewCourseController {
         for (int i = 1; i <= studentList.size(); i++) {
             // 用当前的学生编号 对老师的总个数求余
             int k = i % teachCourseRecordList.size();
-            TeachCourseRecord teachCourseRecord = teachCourseRecordList.get(k - 1);
-            Student student = studentList.get(i-1);
+            TeachCourseRecord teachCourseRecord = teachCourseRecordList.get(k);
+            Student student = studentList.get(i);
             SelectCourseRecord selectCourseRecord = new SelectCourseRecord();
             selectCourseRecord.setStudentId(student.getId());
             selectCourseRecord.setTeachCourseRecordId(teachCourseRecord.getId());

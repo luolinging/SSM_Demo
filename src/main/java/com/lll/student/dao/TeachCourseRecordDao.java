@@ -1,6 +1,8 @@
 package com.lll.student.dao;
 
 import com.lll.student.domain.pojo.TeachCourseRecord;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -23,6 +25,8 @@ public interface TeachCourseRecordDao {
      * 增加授课记录
      * @param teachCourseRecord 授课记录
      */
+    @Insert("insert into teach_course_record(teach_id,course_id) values(#{teachId},#{courseId})")
+    @Options(useGeneratedKeys = true, keyProperty = "id",keyColumn="id")
     void insert(TeachCourseRecord teachCourseRecord);
 
     /**
