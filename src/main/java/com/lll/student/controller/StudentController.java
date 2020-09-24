@@ -1,6 +1,7 @@
 package com.lll.student.controller;
 
 import com.lll.student.common.MyException;
+import com.lll.student.annotation.PrintLogAnnotation;
 import com.lll.student.common.Result;
 import com.lll.student.domain.Student;
 import com.lll.student.service.IStudentService;
@@ -24,6 +25,7 @@ public class StudentController {
      * @return 一组student 对象
      */
     @RequestMapping(value = "findAll",method = RequestMethod.GET)
+    @PrintLogAnnotation
     public @ResponseBody List<Student> findAll(){
         // 调用service层的方法
         List<Student> studentList = studentService.findAll();
@@ -69,6 +71,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "findById",method = RequestMethod.GET)
+    @PrintLogAnnotation
     public @ResponseBody Result<Student> findById(@RequestParam Long id){
         if(id < 0){
             throw new MyException("-1","测试数据");

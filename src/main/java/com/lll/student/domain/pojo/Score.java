@@ -6,8 +6,8 @@ import lombok.Data;
  * @author luo
  */
 @Data
-public class TeachCourseRecord {
+public class Score {
     private Long id;
-    private Long teachId;
-    private Long courseId;
+    private Long selectCourseRecordId;
+    private Double score;
 }
