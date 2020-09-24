@@ -23,7 +23,7 @@
     <!--1、配置数据源-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/student?serverTimezone=UTC&amp;useSSL=false"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/student_select_course?serverTimezone=UTC&amp;useSSL=false"></property>
         <property name="user" value="root"></property>
         <property name="password" value="123456"></property>
     </bean>

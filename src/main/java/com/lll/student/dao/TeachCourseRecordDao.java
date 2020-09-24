@@ -1,6 +1,7 @@
 package com.lll.student.dao;
 
 import com.lll.student.domain.pojo.TeachCourseRecord;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -29,9 +30,9 @@ public interface TeachCourseRecordDao {
      * @param courseId 课程id
      * @return 一组授课记录
      */
-    @Select("select * from teachCourseRecord where course_id = #{courseId}")
+    @Select("select * from teach_course_record where course_id = #{courseId}")
     List<TeachCourseRecord> selectByCourseId(Long courseId);
 
-    @Select("select * from teachCourseRecord where teacher_id = #{teacherId} and course_id = #{courseId}")
-    List<TeachCourseRecord> selectByCourseAndTeacher(Long teacherId, Long courseId);
+    @Select("select * from teach_course_record where teacher_id = #{teacherId} and course_id = #{courseId}")
+    List<TeachCourseRecord> selectByCourseAndTeacher(@Param("teacherId") Long teacherId, @Param("courseId") Long courseId);
 }
