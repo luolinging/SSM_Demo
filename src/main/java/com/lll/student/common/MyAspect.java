@@ -37,10 +37,13 @@ public class MyAspect {
             // 明确调用业务层方法（切入点方法）
             returnValue = proceedingJoinPoint.proceed(args);
         } catch (MyException e){
-            log.warn("业务异常:{}",e.toString());
+            log.warn("业务异常:{}", e);
             return Result.wrapErrorResult(e.getCode(),e.getMessage());
-        } catch (Throwable throwable){
-            log.error("非业务异常:{}",throwable.toString());
+        } catch (Exception e){
+            log.error("非业务异常:{}", e);
+            return Result.wrapErrorResult("-1","系统内部错误");
+        } catch (Throwable throwable) {
+            log.error("非业务异常:{}", throwable.toString());
             return Result.wrapErrorResult("-1","系统内部错误");
         }
         return returnValue;
