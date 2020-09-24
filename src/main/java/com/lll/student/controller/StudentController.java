@@ -4,7 +4,7 @@ import com.lll.student.common.MyException;
 import com.lll.student.annotation.PrintLogAnnotation;
 import com.lll.student.common.Result;
 import com.lll.student.domain.Student;
-import com.lll.student.service.IStudentService;
+import com.lll.student.service.impl.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
     @Autowired
-    private IStudentService studentService;
+    private StudentServiceImpl studentService;
 
     /**
      * 查询所有
